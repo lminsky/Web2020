@@ -3,13 +3,6 @@ button.addEventListener("click", getWords);
 
 
 function getWords() {
-  var inputs = document.getElementsByTagName("input");
-  for(i in inputs) {
-    if(inputs[i].value == "") {
-      return alert("Make sure you fill out every field");
-    }
-  }
-
   document.getElementById("word0").innerHTML = document.getElementById("word0Entry").value;
   document.getElementById("word1").innerHTML = document.getElementById("word1Entry").value;
   document.getElementById("word2").innerHTML = document.getElementById("word2Entry").value;
