@@ -24,12 +24,28 @@ document.getElementById("submit").addEventListener("click", function() {
 
 //Writes information to the database
 function writeUserData(userId, name, email) {
-  database.ref('users/' + userId).set({
+  database.ref('users').push({
+    id: userId,
     username: name,
     email: email
   });
 }
 
+//Read from the database EVERY TIME the reference location changes
+firebase.database().ref('/').on('value', function(snapshot) {
+  //Get the value from the database snapshot
+  var users = snapshot.val().users;
+  //Get the location from html
+  var ul = document.getElementById("output");
+  //Clear the html so we don't duplicate everything
+  ul.innerHTML = "";
+  //Loop through the value and add each one
+  for(var i in users) {
+    var temp = document.createElement("li");
+    temp.innerHTML = users[i].username;
+    ul.append(temp);
+  }
+});
 
 
 
